@@ -113,7 +113,7 @@ function Quotes() {
           <IconButton
             sx={{ color: '#3a5a40' }}
             size='small'
-            href='https://github.com/imarunp/Breaking-bad-quotes'
+            href='https://github.com/imarunp/BreakingBadQuotes'
           >
             <GitHubIcon />
           </IconButton>
