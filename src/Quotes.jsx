@@ -69,6 +69,8 @@ function Quotes() {
             width='75%'
             height={150}
             mt={4}
+            mr='auto'
+            ml='auto'
             pt={5}
             pl={3}
             pb={3}
