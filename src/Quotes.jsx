@@ -96,7 +96,7 @@ function Quotes() {
             }}
             size='large'
           >
-            Get a random Quote
+            GET A QUOTE!
           </Button>
         </CardActions>
         <Typography
