@@ -4,24 +4,37 @@ import {
   Card,
   CardActions,
   CardContent,
+  CircularProgress,
   IconButton,
   Typography,
 } from '@mui/material';
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 function Quotes() {
   const [quote, setQuote] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getData();
   }, []);
 
   function getData() {
-    axios
-      .get('https://api.breakingbadquotes.xyz/v1/quotes')
-      .then((res) => setQuote(res.data[0]));
+    fetch('https://api.breakingbadquotes.xyz/v1/quotes')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setQuote(data[0]);
+        setLoading(false);
+      })
+      .catch((error) => {
+        // Handle any errors here
+        console.error(error);
+      });
   }
 
   return (
@@ -77,9 +90,14 @@ function Quotes() {
             pr={3}
           >
             <Typography sx={{ fontWeight: 'bold', pb: 2 }} variant='body1'>
-              "{quote.quote}"
+              <CircularProgress
+                sx={{ m: 'auto', display: loading ? 'block' : 'none' }}
+              />
+              {quote.quote}
             </Typography>
-            <Typography variant='body1'>- {quote.author}</Typography>
+            <Typography display={loading ? 'none' : ''} variant='body1'>
+              - {quote.author}
+            </Typography>
           </Box>
         </CardContent>
         <CardActions>
