@@ -13,11 +13,11 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 
 function Quotes() {
   const [quote, setQuote] = useState({});
-  const [count, setCount] = useState(1);
 
   useEffect(() => {
     getData();
-  }, [count]);
+  }, []);
+
   function getData() {
     axios
       .get('https://api.breakingbadquotes.xyz/v1/quotes')
@@ -84,7 +84,7 @@ function Quotes() {
         </CardContent>
         <CardActions>
           <Button
-            onClick={() => setCount((count) => count + 1)}
+            onClick={() => getData()}
             sx={{
               ml: 'auto',
               mr: 'auto',
